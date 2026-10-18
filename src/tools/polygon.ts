@@ -25,6 +25,10 @@ export class Polygon extends SVGTool {
 
   private activeTrace?: TraceID;
 
+  setStrokeColor(color: string) {
+    this.options.stroke = color;
+  }
+
   onTraceStart(trace: Trace) {
     if (this.activeTrace) {
       return;

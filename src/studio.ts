@@ -33,16 +33,19 @@ export class StudioElement extends LitElement {
   @state()
   private tool: keyof typeof this.tools = "pen";
 
+  @state()
+  private color: string = "blue";
+
   private readonly tools = {
     tracker: new Tracker(),
     tracer: new Tracer(),
     polygon: new Polygon({
       fill: "transparent",
-      stroke: "green",
+      stroke: this.color,
       strokeWidth: 4,
     }),
     pen: new Pen({
-      fill: "blue",
+      fill: this.color,
       stroke: {
         size: 30,
         smoothing: 0.81,
@@ -58,6 +61,11 @@ export class StudioElement extends LitElement {
       },
     }),
   };
+
+  private setColor(color: string) {
+    this.tools.pen.setFillColor(color);
+    this.tools.polygon.setStrokeColor(color);
+  }
 
   constructor() {
     super();
@@ -86,6 +94,16 @@ export class StudioElement extends LitElement {
         >
           ${tools}
         </select>
+        <label for="color">
+          <input
+            type="color"
+            value=${this.color}
+            name="color"
+            @change=${(e: InputEvent) =>
+              this.setColor((e.target as HTMLInputElement).value)}
+          />
+          Color</label
+        >
       </div>
       <x-canvas
         tool=${this.tool}

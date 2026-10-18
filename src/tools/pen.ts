@@ -55,6 +55,10 @@ export class Pen extends SVGTool {
 
   private activeTrace?: TraceID;
 
+  setFillColor(color: string) {
+    this.options.fill = color;
+  }
+
   onTraceStart(trace: Trace) {
     if (this.activeTrace) {
       this.activeTrace = undefined;
