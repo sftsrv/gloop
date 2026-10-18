@@ -2,10 +2,12 @@
 
 An app for mixing and matching little drawings
 
-## TO-DO
 
-## Studio
+## To-Do
 
+- [ ] Multiple colours
+- [ ] Sliders to manipulate pen
+- [ ] Export SVG
 - [ ] Build canvas app as library
 - [x] Handle click and touch inputs
 - [x] Basic pen tool
@@ -19,6 +21,7 @@ An app for mixing and matching little drawings
   - [x] Later: Zooming to use cursor as base location
   - [ ] Later: Clamp canvas to bounds (weirdly tricky)
 - [ ] Path selection tool with highlighting
+  - [ ] Erasing?
   - [ ] For collision detection it might be possible to use an intersection observer with a fake hit-box if there's no obvious solution since https://developer.mozilla.org/en-US/docs/Web/API/SVGSVGElement/checkIntersection is not baseline
 - [ ] Basic toolbox
   - [ ] Tools can render a button in the toolbox
@@ -30,12 +33,3 @@ An app for mixing and matching little drawings
   - [ ] Create a pattern from sketch
   - [ ] Use a pattern as fill
   - [ ] Create an SVG pattern/color from the camera
-
-## App
-
-- [ ] Use canvas component in app
-- [ ] Delete unused Phoenix scaffolding
-- [ ] User registration and login screen
-- [ ] Collection CRUD
-- [ ] Drawing CRUD
-- [ ] Shuffle CRUD
