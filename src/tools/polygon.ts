@@ -1,4 +1,4 @@
-import { type SVGTemplateResult } from "lit";
+import { html, type SVGTemplateResult } from "lit";
 import { path, pointsToPath, toSVGPosition, type PathConfig } from "../svg";
 import { SVGTool } from "./tool";
 import { type PagePosition } from "../conversions";
@@ -24,10 +24,6 @@ export class Polygon extends SVGTool {
   }
 
   private activeTrace?: TraceID;
-
-  setStrokeColor(color: string) {
-    this.options.stroke = color;
-  }
 
   onTraceStart(trace: Trace) {
     if (this.activeTrace) {
@@ -67,5 +63,29 @@ export class Polygon extends SVGTool {
     const trace = traces[activeTrace];
 
     return this.renderTrace(parent, trace);
+  }
+
+  renderTools() {
+    return html`
+      <label>
+        Fill
+        <input
+          type="color"
+          value=${this.options.fill || ""}
+          @change=${(e: InputEvent) =>
+            (this.options.stroke = (e.target as HTMLInputElement).value)}
+        />
+      </label>
+
+      <label>
+        Fill
+        <input
+          type="color"
+          value=${this.options.fill || ""}
+          @change=${(e: InputEvent) =>
+            (this.options.fill = (e.target as HTMLInputElement).value)}
+        />
+      </label>
+    `;
   }
 }

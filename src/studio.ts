@@ -62,11 +62,6 @@ export class StudioElement extends LitElement {
     }),
   };
 
-  private setColor(color: string) {
-    this.tools.pen.setFillColor(color);
-    this.tools.polygon.setStrokeColor(color);
-  }
-
   constructor() {
     super();
     new KeybindingController(this, {
@@ -94,15 +89,8 @@ export class StudioElement extends LitElement {
         >
           ${tools}
         </select>
-        <label>
-          Color
-          <input
-            type="color"
-            value=${this.color}
-            @change=${(e: InputEvent) =>
-              this.setColor((e.target as HTMLInputElement).value)}
-          />
-        </label>
+
+        ${this.tools[this.tool].renderTools()}
       </div>
       <x-canvas
         tool=${this.tool}

@@ -1,4 +1,4 @@
-import { type SVGTemplateResult } from "lit";
+import { html, type SVGTemplateResult } from "lit";
 import { path, toSVGPosition } from "../svg";
 import { SVGTool } from "./tool";
 import { type PagePosition } from "../conversions";
@@ -37,7 +37,7 @@ export function getSvgPathFromStroke(stroke: Vec2[]) {
  * [the demo site](https://www.perfectfreehand.com/)
  */
 type PenOptions = {
-  stroke?: StrokeOptions;
+  stroke: StrokeOptions;
   fill?: string;
 };
 
@@ -47,17 +47,13 @@ type PenOptions = {
 export class Pen extends SVGTool {
   private readonly options: PenOptions;
 
-  constructor(options: PenOptions = {}) {
+  constructor(options: PenOptions = { stroke: {} }) {
     super();
 
     this.options = options;
   }
 
   private activeTrace?: TraceID;
-
-  setFillColor(color: string) {
-    this.options.fill = color;
-  }
 
   onTraceStart(trace: Trace) {
     if (this.activeTrace) {
@@ -99,5 +95,30 @@ export class Pen extends SVGTool {
     const trace = traces[activeTrace];
 
     return this.renderTrace(parent, trace);
+  }
+
+  renderTools() {
+    return html`
+      <label>
+        Fill
+        <input
+          type="color"
+          value=${this.options.fill || ""}
+          @change=${(e: InputEvent) =>
+            (this.options.fill = (e.target as HTMLInputElement).value)}
+        />
+      </label>
+      <label>
+        Stroke
+        <input
+          type="range"
+          value=${this.options.stroke?.size || "30"}
+          min="1"
+          max="100"
+          @change=${(e: InputEvent) =>
+            (this.options.stroke.size = +(e.target as HTMLInputElement).value)}
+        />
+      </label>
+    `;
   }
 }

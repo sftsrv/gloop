@@ -1,4 +1,4 @@
-import type { SVGTemplateResult } from "lit";
+import type { SVGTemplateResult, TemplateResult } from "lit";
 import { Listenable } from "../controllers/listener";
 import type { Trace, Traces } from "../controllers/controller.types";
 
@@ -14,4 +14,6 @@ export abstract class SVGTool extends Listenable<SVGToolEventMap> {
     parent: SVGElement,
     traces: Traces,
   ): SVGTemplateResult | undefined;
+
+  abstract renderTools(): TemplateResult;
 }

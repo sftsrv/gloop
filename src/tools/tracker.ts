@@ -1,4 +1,4 @@
-import { type SVGTemplateResult, svg } from "lit";
+import { type SVGTemplateResult, type TemplateResult, html, svg } from "lit";
 import { toSVGPosition, text } from "../svg";
 import { SVGTool } from "./tool";
 import type { Traces } from "../controllers/controller.types";
@@ -18,5 +18,9 @@ export class Tracker extends SVGTool {
     );
 
     return svg`${texts}`;
+  }
+
+  renderTools(): TemplateResult {
+    return html``;
   }
 }
