@@ -26,7 +26,7 @@ export class CanvasElement extends LitElement {
 
       > svg {
         flex: 1;
-        background-color: lightgrey;
+        background-color: white;
       }
     }
   `;

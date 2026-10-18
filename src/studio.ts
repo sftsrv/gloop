@@ -34,7 +34,7 @@ export class StudioElement extends LitElement {
   private tool: keyof typeof this.tools = "pen";
 
   @state()
-  private color: string = "blue";
+  private color: string = "black";
 
   private readonly tools = {
     tracker: new Tracker(),
@@ -94,16 +94,15 @@ export class StudioElement extends LitElement {
         >
           ${tools}
         </select>
-        <label for="color">
+        <label>
+          Color
           <input
             type="color"
             value=${this.color}
-            name="color"
             @change=${(e: InputEvent) =>
               this.setColor((e.target as HTMLInputElement).value)}
           />
-          Color</label
-        >
+        </label>
       </div>
       <x-canvas
         tool=${this.tool}
